@@ -4,10 +4,10 @@ from WordClass import Word
 
 pygame.init()
 
-word = Word("euthanasie".lower())
+word = Word(input("Word that the player should guess: ").lower())
 Clock = pygame.time.Clock()
 display_font = pygame.font.SysFont("Arial", 40)
-used_font = pygame.font.SysFont("Arial", 20, True)
+used_font = pygame.font.SysFont("Arial", 25, True)
 
 size = 600, 600
 background_color = 100, 100, 100
