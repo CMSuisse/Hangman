@@ -1,27 +1,21 @@
-from turtle import back
 import pygame
 
-first_line = [(100,400),(300,400)]
-second_line = [(200,400),(200,100)]
-third_line = [(200,100),(325,100)]
-fourth_line = [(200,150),(250,100)]
-fifth_line = [(300,100),(300,150)]
-sixth_cirlce = [(300,175),25]
-seventh_line = [(300,200),(300,300)]
-eigth_line = [(300,300),(275,350)]
-ninth_line = [(300,300),(325,350)]
-tenth_line = [(300,225),(275,275)]
-eleventh_line = [(300,225),(325,275)]
+matrix = [[(100,400),(300,400)], #line 1
+          [(200,400),(200,100)], #line 2
+          [(200,100),(325,100)], #line 3
+          [(200,150),(250,100)], #line 4
+          [(300,100),(300,150)], #line 5
+          [(300,175),25],        #line 6
+          [(300,200),(300,300)], #line 7
+          [(300,300),(275,350)], #line 8
+          [(300,300),(325,350)], #line 9
+          [(300,225),(275,275)], #line 10
+          [(300,225),(325,275)]] #line 11
 
-def draw_hangman(background: pygame.Surface, errors: int):
-    if errors >= 1: pygame.draw.line(background,(0,0,0),first_line[0],first_line[1],2)
-    if errors >= 2: pygame.draw.line(background,(0,0,0),second_line[0],second_line[1],2)
-    if errors >= 3: pygame.draw.line(background,(0,0,0),third_line[0],third_line[1],2)
-    if errors >= 4: pygame.draw.line(background,(0,0,0),fourth_line[0],fourth_line[1],2)
-    if errors >= 5: pygame.draw.line(background,(0,0,0),fifth_line[0],fifth_line[1],2)
-    if errors >= 6: pygame.draw.circle(background,(0,0,0),sixth_cirlce[0],sixth_cirlce[1],2)
-    if errors >= 7: pygame.draw.line(background,(0,0,0),seventh_line[0],seventh_line[1],2)
-    if errors >= 8: pygame.draw.line(background,(0,0,0),eigth_line[0],eigth_line[1],2)
-    if errors >= 9: pygame.draw.line(background,(0,0,0),ninth_line[0],ninth_line[1],2)
-    if errors >= 10: pygame.draw.line(background,(0,0,0),tenth_line[0],tenth_line[1],2)
-    if errors >= 11: pygame.draw.line(background,(0,0,0),eleventh_line[0],eleventh_line[1],2)
+def draw_hangman(background: pygame.Surface, errors: int) -> None:
+    if errors > 11: errors = 11
+    for i in range(errors):
+        if i == 5:
+            pygame.draw.circle(background, (0, 0, 0), matrix[i][0], matrix[i][1], 2)
+            continue
+        pygame.draw.line(background, (0, 0, 0), matrix[i][0], matrix[i][1], 2)

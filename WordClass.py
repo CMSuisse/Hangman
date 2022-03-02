@@ -1,37 +1,38 @@
 class Word :
-    def __init__(self,wort):
-        self.word = wort
+    def __init__(self, wort: str) -> None:
+        self.word = wort.lower()
+        self.word.replace("ä", "ae")
+        self.word.replace("ö", "oe")
+        self.word.replace("ü", "ue")
         self.wortliste = []
         for i in range(len(wort)):
             self.wortliste.append("_")
         self.errors = 0
         self.word_guess = []
-    def testword(self,buchstabe):
+
+    def testword(self, buchstabe: str) -> bool:
         if buchstabe in self.word:
-            self.word_guess.append(buchstabe)
             for i in range(len(self.word)):
                 if self.word[i] == buchstabe:
-                    self.wortliste.insert(i,buchstabe)
+                    self.wortliste[i] = buchstabe
             return True
         else:
+            if buchstabe not in self.word_guess:
+                self.word_guess.append(buchstabe)
             self.errors += 1
             return False
-    def getWort(self):
+
+    def getWort(self) -> list:
         return self.wortliste
-    def geterros(self):
+
+    def geterrors(self) -> int:
         return self.errors
-    def getWordGuess(self):
+
+    def getLetterGuess(self) -> list:
         return self.word_guess
-    def delob(self):
+
+    def delob(self) -> bool:
         if not "_" in self.wortliste:
             del[self]
             return True
-
-obj = Word("hallo")
-print (obj.getWordGuess())
-print (obj.getWort())
-print (obj.geterros())
-print (obj.testword("l"))
-print (obj.getWordGuess())
-print (obj.getWort())
-print (obj.geterros())
+        return False
